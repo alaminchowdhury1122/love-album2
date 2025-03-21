@@ -145,7 +145,7 @@
         <textarea id="noteInput" rows="4" cols="50" placeholder="Write something sweet..."></textarea>
         <br>
         <button type="submit">Save Note</button>
-    
+    </form>
 
     <!-- Background music -->
     <audio autoplay loop>
@@ -210,3 +210,239 @@
         transition: transform 0.3s ease; /* Hover effect */
     }
 </style>
+
+
+<!-- Footer Section -->
+<footer style="margin-top: 50px; padding: 20px; background-color: rgba(255, 105, 180, 0.8); color: white; border-radius: 10px;">
+    <p style="font-size: 18px; margin: 0;">Made with ❤️ by Al Amin Chowdhury</p>
+    <p style="font-size: 14px; margin: 5px 0;">© 2025 All Rights Reserved</p>
+    <div style="margin-top: 10px;">
+        <a href="https://www.instagram.com" target="_blank" style="color: white; margin: 0 10px; text-decoration: none;">Instagram</a>
+        <a href="https://www.facebook.com" target="_blank" style="color: white; margin: 0 10px; text-decoration: none;">Facebook</a>
+        <a href="https://www.twitter.com" target="_blank" style="color: white; margin: 0 10px; text-decoration: none;">Twitter</a>
+    </div>
+</footer>
+<!-- Add a Back to Top Button -->
+<button onclick="scrollToTop()" style="position: fixed; bottom: 20px; right: 20px; padding: 10px 15px; background-color: #ff69b4; color: white; border: none; border-radius: 50%; cursor: pointer; font-size: 16px; display: none;" id="backToTopBtn">↑</button>
+
+<script>
+    // Show or hide the Back to Top button
+    const backToTopBtn = document.getElementById('backToTopBtn');
+    window.onscroll = function() {
+        if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+            backToTopBtn.style.display = "block";
+        } else {
+            backToTopBtn.style.display = "none";
+        }
+    };
+
+    // Scroll to top functionality
+    function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+</script>
+
+
+
+<!-- Add a floating heart animation -->
+<div class="floating-hearts">
+    <div class="heart-shape"></div>
+    <div class="heart-shape"></div>
+    <div class="heart-shape"></div>
+</div>
+
+<style>
+    .floating-hearts {
+        position: fixed;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        pointer-events: none;
+        z-index: 999;
+    }
+    .heart-shape {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background-color: #ff69b4;
+        transform: rotate(45deg);
+        animation: float 5s infinite ease-in-out;
+        opacity: 0.8;
+    }
+    .heart-shape:before,
+    .heart-shape:after {
+        content: '';
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background-color: #ff69b4;
+        border-radius: 50%;
+    }
+    .heart-shape:before {
+        top: -10px;
+        left: 0;
+    }
+    .heart-shape:after {
+        left: -10px;
+        top: 0;
+    }
+    .heart-shape:nth-child(1) {
+        left: 0;
+        animation-delay: 0s;
+    }
+    .heart-shape:nth-child(2) {
+        left: 30px;
+        animation-delay: 1s;
+    }
+    .heart-shape:nth-child(3) {
+        left: 60px;
+        animation-delay: 2s;
+    }
+    @keyframes float {
+        0% {
+            transform: translateY(0) rotate(45deg);
+            opacity: 0.8;
+        }
+        50% {
+            transform: translateY(-200px) rotate(45deg);
+            opacity: 0.5;
+        }
+        100% {
+            transform: translateY(-400px) rotate(45deg);
+            opacity: 0;
+        }
+    }
+</style>
+
+<!-- Add a Love Bubble Form Button -->
+<button onclick="showLoveBubbleForm()" style="position: fixed; bottom: 80px; right: 20px; padding: 10px 15px; background-color: #ff69b4; color: white; border: none; border-radius: 50%; cursor: pointer; font-size: 16px;">💌</button>
+
+<!-- Love Bubble Form -->
+<div id="loveBubbleForm" style="display: none; position: fixed; bottom: 150px; right: 20px; background-color: rgba(255, 105, 180, 0.9); padding: 20px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); z-index: 1000;">
+    <h3 style="color: white; margin: 0 0 10px;">Send a Love Bubble 💕</h3>
+    <textarea id="loveBubbleMessage" rows="3" cols="30" placeholder="Write your love message..." style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #fff; font-size: 14px;"></textarea>
+    <button onclick="sendLoveBubble()" style="margin-top: 10px; padding: 10px 15px; background-color: white; color: #ff69b4; border: none; border-radius: 5px; cursor: pointer; font-size: 14px;">Send</button>
+    <button onclick="closeLoveBubbleForm()" style="margin-top: 10px; padding: 10px 15px; background-color: white; color: #ff69b4; border: none; border-radius: 5px; cursor: pointer; font-size: 14px;">Close</button>
+</div>
+
+<script>
+    // Show the Love Bubble Form
+    function showLoveBubbleForm() {
+        document.getElementById('loveBubbleForm').style.display = 'block';
+    }
+
+    // Close the Love Bubble Form
+    function closeLoveBubbleForm() {
+        document.getElementById('loveBubbleForm').style.display = 'none';
+    }
+
+    // Send Love Bubble
+    function sendLoveBubble() {
+        const message = document.getElementById('loveBubbleMessage').value;
+        if (message.trim() !== '') {
+            alert("Your love bubble message: " + message);
+            document.getElementById('loveBubbleMessage').value = '';
+            closeLoveBubbleForm();
+        } else {
+            alert("Please write a message before sending!");
+        }
+    }
+</script>
+
+<!-- Floating Love Emojis -->
+<div id="floatingEmojis"></div>
+
+<script>
+    // Generate love emojis floating from bottom to top
+    function generateLoveEmojis() {
+        const emojiContainer = document.getElementById('floatingEmojis');
+        for (let i = 0; i < 200; i++) {
+            const emoji = document.createElement('div');
+            emoji.innerText = '❤️';
+            emoji.style.position = 'fixed';
+            emoji.style.bottom = '-50px';
+            emoji.style.left = Math.random() * 100 + 'vw';
+            emoji.style.fontSize = Math.random() * 20 + 10 + 'px';
+            emoji.style.animation = `floatUp ${Math.random() * 5 + 5}s ease-in infinite`;
+            emoji.style.opacity = Math.random();
+            emojiContainer.appendChild(emoji);
+        }
+    }
+
+    // Add keyframes for floating animation
+    const style = document.createElement('style');
+    style.innerHTML = `
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh);
+                opacity: 0;
+            }
+        }
+    `;
+    document.head.appendChild(style);
+
+    // Call the function to generate emojis
+    generateLoveEmojis();
+</script>
+
+
+<!-- Button to propose after all pictures -->
+<div style="margin-top: 30px;">
+    <button onclick="propose()" style="padding: 15px 30px; background-color: #ff69b4; color: white; border: none; border-radius: 10px; cursor: pointer; font-size: 20px;">Will You Marry Me? 💍</button>
+</div>
+
+<script>
+    function propose() {
+        alert("You are the love of my life. Will you marry me? 💖");
+    }
+</script></div>
+
+
+</div>
+<!-- Proposal Response -->
+<div id="proposalResponse" style="display: none; margin-top: 20px;">
+    <button onclick="acceptProposal()" style="padding: 15px 30px; background-color: #32CD32; color: white; border: none; border-radius: 10px; cursor: pointer; font-size: 20px;">Yes 💕</button>
+    <button onclick="declineProposal()" style="padding: 15px 30px; background-color: #FF6347; color: white; border: none; border-radius: 10px; cursor: pointer; font-size: 20px;">No 😢</button>
+</div>
+
+<script>
+    function propose() {
+        document.getElementById('proposalResponse').style.display = 'block';
+    }
+
+    function acceptProposal() {
+        alert("You said YES! 💍❤️ I can't wait to spend my life with you!");
+        document.getElementById('proposalResponse').style.display = 'none';
+    }
+
+    function declineProposal() {
+        alert("You said NO... 😢 But I will always love you.");
+        document.getElementById('proposalResponse').style.display = 'none';
+    }
+</script></div>
+
+<script>
+    function sendEmailNotification(response) {
+        const email = "alonealamin109@gmail.com";
+        const subject = "Proposal Response Notification";
+        const body = `The response to your proposal is: ${response}`;
+        const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        window.location.href = mailtoLink;
+    }
+
+    function acceptProposal() {
+        alert("You said YES! 💍❤️ I can't wait to spend my life with you!");
+        sendEmailNotification("YES");
+        document.getElementById('proposalResponse').style.display = 'none';
+    }
+
+    function declineProposal() {
+        alert("You said NO... 😢 But I will always love you.");
+        sendEmailNotification("NO");
+        document.getElementById('proposalResponse').style.display = 'none';
+    }
+</script></script>
