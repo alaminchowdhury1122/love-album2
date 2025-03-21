@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Special Moments</title>
+    <!-- Adding a romantic font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to right, #ffafbd, #ffc3a0); /* Romantic gradient background */
+            font-family: 'Parisienne', cursive; /* Romantic font */
+            color: #333;
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+        }
+        h1 {
+            font-size: 48px; /* Bigger title */
+            color: #fff;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Shadow for title */
+        }
+        h3 {
+            color: #fff;
+            margin-top: 30px;
+            font-size: 28px;
+        }
+        .heart {
+            display: inline-block;
+            color: red;
+            font-size: 30px;
+            animation: beat 1s infinite; /* Heartbeat animation */
+        }
+        @keyframes beat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        .slideshow-container {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .slide {
+            display: none;
+            margin-bottom: 20px;
+        }
+        .slide.active {
+            display: block;
+            animation: fade 1.5s ease-in-out; /* Fade animation for slideshow */
+        }
+        @keyframes fade {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        img {
+            width: 100%;
+            max-width: 350px; /* Slightly larger images */
+            border-radius: 15px; /* Rounded corners */
+            border: 5px solid #fff; /* White border around images */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Shadow for images */
+            transition: transform 0.3s ease; /* Hover effect */
+        }
+        img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 20px #ff69b4;
+        }
+        p {
+            font-size: 24px; /* Bigger text */
+            color: #fff;
+            margin-top: 10px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Shadow for text */
+        }
+        button {
+            padding: 12px 25px;
+            background-color: #ff69b4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 20px 0;
+            font-size: 18px;
+            font-family: Arial, sans-serif;
+        }
+        button:hover {
+            background-color: #ff1493;
+        }
+        #hiddenMessage {
+            font-size: 26px;
+            color: #ff69b4;
+            margin-top: 20px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+        textarea {
+            width: 100%;
+            max-width: 500px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            font-family: Arial, sans-serif;
+        }
+        #savedNote {
+            color: #fff;
+            font-size: 20px;
+            margin-top: 10px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- Title with heartbeat animation -->
+    <h1>Our Special Moments <span class="heart">❤️</span></h1>
+
+    <!-- Slideshow for photos -->
+    <div class="slideshow-container">
+        <div class="slide active">
+            <img src="/img/img1.jpg" alt="Our first date">
+            <p>Our first date together ❤️ (6th January 2025)</p>
+        </div>
+        <div class="slide">
+            <img src="img/img2.jpg" alt="Our first bike ride">
+            <p>Our first bike ride 🚴 (11th January 2025)</p>
+        </div>
+        <div class="slide">
+            <img src="img/img3.jpg" alt="Every moment with you">
+            <p>Every moment with you is special!! ❤️</p>
+        </div>
+    </div>
+
+    <!-- Button to reveal hidden message -->
+    <button onclick="revealMessage()">Click to See a Special Message! 💕</button>
+    <div id="hiddenMessage" style="display: none;">
+        I love you more than words can say! You make every moment magical. ❤️
+    </div>
+
+    <!-- Write a note section -->
+    <h3>Write a Note for Me 💌</h3>
+    <textarea id="noteInput" rows="4" cols="50" placeholder="Write something sweet..."></textarea>
+    <br>
+    <button onclick="saveNote()">Save Note</button>
+    <p id="savedNote"></p>
+
+    <!-- Background music -->
+    <audio autoplay loop>
+        <source src="/assest/romantic song.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Confetti library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script>
+        // Confetti effect on page load
+        confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 }
+        });
+
+        // Slideshow functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        function showNextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+        setInterval(showNextSlide, 3000); // Change slide every 3 seconds
+
+        // Reveal hidden message
+        function revealMessage() {
+            document.getElementById('hiddenMessage').style.display = 'block';
+        }
+
+        // Save and display note
+        function saveNote() {
+            const note = document.getElementById('noteInput').value;
+            localStorage.setItem('gfNote', note);
+            document.getElementById('savedNote').innerText = "Your note: " + note;
+        }
+
+        // Load saved note on page load
+        window.onload = function() {
+            const savedNote = localStorage.getItem('gfNote');
+            if (savedNote) {
+                document.getElementById('savedNote').innerText = "Your note: " + savedNote;
+            }
+            // Ensure first slide is visible on load
+            slides[0].classList.add('active');
+        }
+    </script>
+</body>
+</html>
