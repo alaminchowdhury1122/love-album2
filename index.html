@@ -153,7 +153,7 @@
         Your browser does not support the audio element.
     </audio> -->
     <!-- Add this CSS in your <style> section -->
-<style>
+<!-- <style>
     .background-music {
         position: fixed;
         width: 0;
@@ -164,12 +164,58 @@
 </style>
 
 <!-- Update your iframe with mute=1 -->
-<iframe 
+<!-- <iframe 
     class="background-music"
     src="https://www.youtube.com/embed/8Px_MaTOM28?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=8Px_MaTOM28"
     frameborder="0"
     allow="autoplay; encrypted-media">
-</iframe>
+</iframe> -->
+ -->
+
+<!--     <!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Your existing head content -->
+    <style> -->
+        /* Your existing styles */
+        .background-music {
+            position: fixed;
+            width: 0;
+            height: 0;
+            border: 0;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Your existing content -->
+
+    <!-- Updated iframe -->
+    <iframe 
+        class="background-music"
+        src="https://www.youtube.com/embed/8Px_MaTOM28?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=8Px_MaTOM28"
+        frameborder="0"
+        allow="autoplay; encrypted-media">
+    </iframe>
+
+    <!-- Optional toggle button -->
+    <button onclick="toggleMusic()">Toggle Music On/Off</button>
+
+    <!-- Your existing scripts -->
+    <script>
+        // Your existing script content
+
+        // Add this for the toggle
+        function toggleMusic() {
+            let iframe = document.querySelector('.background-music');
+            let src = iframe.src;
+            if (src.includes('mute=0')) {
+                iframe.src = src.replace('mute=0', 'mute=1');
+            } else {
+                iframe.src = src.replace('mute=1', 'mute=0');
+            }
+        }
+    </script>
 
     <!-- Confetti library -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
