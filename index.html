@@ -152,9 +152,21 @@
         <source src="https://alaminchowdhury1122.github.io/love-album2/romantic%20song.mp3" type="audio/mp3">
         Your browser does not support the audio element.
     </audio> -->
-    <iframe 
+    <!-- Add this CSS in your <style> section -->
+<style>
+    .background-music {
+        position: fixed;
+        width: 0;
+        height: 0;
+        border: 0;
+        z-index: -1; /* Keeps it behind other content */
+    }
+</style>
+
+<!-- Update your iframe with mute=1 -->
+<iframe 
     class="background-music"
-    src="https://www.youtube.com/embed/8Px_MaTOM28?autoplay=1&controls=0&showinfo=0&rel=0&loop=1&playlist=8Px_MaTOM28"
+    src="https://www.youtube.com/embed/8Px_MaTOM28?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=8Px_MaTOM28"
     frameborder="0"
     allow="autoplay; encrypted-media">
 </iframe>
